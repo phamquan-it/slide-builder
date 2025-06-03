@@ -1,84 +1,97 @@
-# Livestream Studio
+# Slide Builder
 
-**Livestream Studio** is a web-based platform that allows users to create personal channels, broadcast livestreams, manage stream sessions, and interact with viewers in real-time.
+**Slide Builder** là một công cụ tạo slide hiện đại, dựa trên web, cho phép người dùng thiết kế, chỉnh sửa và xuất bản slide động dưới dạng `.pptx`. Hướng đến giáo dục, sáng tạo và trình bày chuyên nghiệp, Slide Builder tích hợp trình vẽ trên HTML Canvas, quản lý nhiều slide, và hỗ trợ công cụ vẽ ảnh trực tiếp.
 
-The project is built with [Next.js](https://nextjs.org) for the frontend, and it's easily extensible with a backend via REST APIs or WebSocket.
+Dự án sử dụng [Next.js](https://nextjs.org), [Redux Toolkit](https://redux-toolkit.js.org/), và [PptxGenJS](https://gitbrent.github.io/PptxGenJS/) để cung cấp trải nghiệm xây slide thời gian thực và xuất bản file PowerPoint.
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Bắt đầu nhanh
 
-Install dependencies:
+Cài đặt thư viện:
 
 ```bash
 npm install
-# or
+# hoặc
 yarn install
 ```
 
-Run the development server:
+Chạy ứng dụng phát triển:
 
 ```bash
 npm run dev
-# or
+# hoặc
 yarn dev
 ```
 
-Open your browser at [http://localhost:3000](http://localhost:3000) to view the app.
+Mở trình duyệt tại [http://localhost:3000](http://localhost:3000) để bắt đầu tạo slide.
 
 ---
 
-## 🔧 Project Structure
+## 🔧 Cấu trúc dự án
 
-- `app/`: Main pages and routes using Next.js App Router.
-- `components/`: Reusable UI components such as navigation bar, chatbox, and stream lists.
-- `lib/`: Utilities and configurations like API fetchers or client helpers.
-- `styles/`: Tailwind and custom styles.
-- `public/`: Static assets and images.
-
----
-
-## 🌟 Key Features
-
-- 🎙️ **Livestream broadcasting** using personal stream keys (OBS or similar software).
-- 🔐 **User authentication** with role-based access for streamers and viewers.
-- 🧩 **Channel management**: profile details, stream titles, visibility (public/private).
-- 💬 **Real-time chat** for viewer-streamer interaction.
-- 📺 **Stream discovery page** with filtering and categorization.
+- `app/`: Các route chính sử dụng App Router của Next.js.
+- `components/`: Các UI component như thanh công cụ, sidebar, canvas.
+- `lib/`: Hàm tiện ích như xuất `.pptx`, quản lý file.
+- `redux/`: Slice Redux để quản lý state slide và phần tử.
+- `canvas/`: Toàn bộ logic dựng và tương tác canvas.
+- `public/`: Tài nguyên tĩnh như icon, hình ảnh mẫu.
+- `styles/`: Cấu hình Tailwind CSS và các style tùy chỉnh.
 
 ---
 
-## 💡 Technologies Used
+## 🌟 Tính năng nổi bật
 
-- **Next.js 14 (App Router)** – modern React framework with SSR support.
-- **TypeScript** – ensures type safety during development.
-- **Tailwind CSS** – fast and responsive styling.
-- **WebSocket (optional)** – real-time messaging support.
-- **REST API** – used to integrate backend systems (Laravel, NestJS, etc.).
-
----
-
-## 📂 Future Enhancements
-
-- 📊 Viewer analytics and stream performance tracking.
-- 🎨 Streamer interface customization.
-- 🔔 Notifications for followers when a new stream goes live.
-- 💾 VOD (video-on-demand) storage and playback.
+- 🖼️ **Trình soạn thảo slide dạng canvas**: hỗ trợ kéo-thả phần tử, chỉnh sửa nội dung trực quan.
+- 📝 **Thêm nội dung đa dạng**: văn bản, hình ảnh, khối màu, hình khối, lớp nền.
+- 🖌️ **Chỉnh sửa hình ảnh trực tiếp** với công cụ vẽ:
+  - **Brush Tool**: vẽ tự do trên ảnh.
+  - **Pencil Tool**: vẽ nét mảnh chính xác.
+  - **Remove Tool**: xoá vùng ảnh theo màu (color masking).
+- 🗂️ **Quản lý nhiều slide**: thêm, xóa, sao chép, sắp xếp slide.
+- 📤 **Xuất file `.pptx`** dễ dàng với PptxGenJS.
+- 🎨 **Chỉnh style phần tử**: font chữ, cỡ, màu sắc, kích thước, xoay, v.v.
+- ♻️ **State toàn cục với Redux Toolkit**: đảm bảo đồng bộ mọi thay đổi.
 
 ---
 
-## 🧪 Suggested Deployment Stack
+## 💡 Công nghệ sử dụng
 
-- **Frontend**: Deployed on Node.js or via a reverse proxy (e.g., NGINX).
-- **Backend**: Custom RESTful API (Laravel, NestJS, etc.).
-- **Streaming server**: Use NGINX + RTMP or [Owncast](https://owncast.online/) for full self-hosted streaming.
-
----
-
-## 📬 Contributing
-
-Feedback, issues, and pull requests are always welcome. Please open an issue or contribute via a pull request.
+- **Next.js 14 (App Router)** – framework React fullstack.
+- **TypeScript** – giúp phát triển an toàn với kiểu rõ ràng.
+- **Redux Toolkit** – quản lý state tập trung và tối ưu.
+- **Tailwind CSS** – styling tiện lợi, responsive.
+- **PptxGenJS** – xuất slide sang `.pptx`.
+- **HTML Canvas API** – xử lý dựng hình và tương tác phần tử.
+- **React DnD / `useRef`** – kéo-thả và resize mượt mà.
 
 ---
 
-**© 2025 – Livestream Studio**
+## 📂 Định hướng phát triển
+
+- 🧠 Gợi ý slide tự động bằng AI.
+- 🔄 Undo / Redo cho thao tác vẽ và chỉnh sửa.
+- ✂️ Brush nâng cao: chọn màu, độ mờ, kích thước.
+- 🧾 Nhập nội dung dạng text và chuyển thành slide.
+- 📡 Hỗ trợ cộng tác thời gian thực (WebSocket/WebRTC).
+- 💾 Lưu lịch sử ảnh đã chỉnh sửa, snapshot từng slide.
+
+---
+
+## 🧪 Gợi ý triển khai
+
+- **Frontend**: triển khai trên Vercel hoặc Node.js server.
+- **Lưu trữ**: xuất file `.pptx` cục bộ, hoặc tích hợp cloud (Firebase, Supabase).
+- **Backend tùy chọn**: xác thực người dùng, lưu dự án, cộng tác (Laravel, Express).
+
+---
+
+## 📬 Đóng góp
+
+Bạn muốn đóng góp, thêm tính năng hoặc báo lỗi?
+
+Hãy tạo issue hoặc pull request trên GitHub – mọi đóng góp đều được hoan nghênh!
+
+---
+
+**© 2025 – Slide Builder**
