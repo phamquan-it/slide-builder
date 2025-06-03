@@ -1,0 +1,77 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "id": {
+                "type": "string",
+                "pattern": "^[0-9]+$"
+            },
+            "name": { "type": "string" },
+            "content": { "type": "string" },
+            "background": { "type": ["string", "null"] },
+            "data": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "key": { "type": ["string", "null"] },
+                        "id": {
+                            "type": "string",
+                            "pattern": "^[0-9]+$"
+                        },
+                        "x": { "type": "number" },
+                        "y": { "type": "number" },
+                        "w": { "type": ["number", "null"] },
+                        "h": { "type": ["number", "null"] },
+                        "name": { "type": ["string", "null"] },
+                        "type": {
+                            "type": "string",
+                            "enum": ["text", "shape", "image", "list"]
+                        },
+                        "content": { "type": "string" },
+                        "fontSize": { "type": "number" },
+                        "fontWeight": {
+                            "type": "string",
+                            "enum": ["normal", "bold"]
+                        },
+                        "color": { "type": ["string", "null"] }
+                    },
+                    "required": [
+                        "id",
+                        "x",
+                        "y",
+                        "type",
+                        "content",
+                        "fontSize",
+                        "fontWeight"
+                    ],
+                    "additionalProperties": false,
+                    "allOf": [
+                        {
+                            "if": {
+                                "properties": { "type": { "const": "shape" } }
+                            },
+                            "then": {
+                                "properties": {
+                                    "content": {
+                                        "enum": [
+                                            "rect",
+                                            "ellipse",
+                                            "diamond",
+                                            "triangle"
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    ]
+                }
+            },
+            "selected": { "type": "boolean" }
+        },
+        "required": ["id", "name", "content", "data", "selected"],
+        "additionalProperties": false
+    }
+}
